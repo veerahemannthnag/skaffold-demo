@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+build:
+  artifacts: []
+deploy:
+  custom:
+    name: terraform
+    deploy:
+      command: ["sh", "-c", "terraform init && terraform apply -auto-approve"]
+      dir: infra
+    delete:
+      command: ["sh", "-c", "terraform destroy -auto-approve"]
+      dir: infra
